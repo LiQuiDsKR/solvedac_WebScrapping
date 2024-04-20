@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profiles</title>
+    <style>
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+            margin: 40px;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: row; /* 세로 방향 배치 */
+            flex-wrap: wrap; /* 카드가 넘치면 줄바꿈 */
+            justify-content: center; /* 가운데 정렬 */
+            align-items: flex-start; /* 행의 시작 부분에 카드 정렬 */
+        }
+        .profile-card {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            margin: 10px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px; /* 모서리 둥글게 */
+        }
+        .profile-card h2 {
+            margin: 0;
+            color: #222;
+        }
+        .profile-card p {
+            color: #666;
+            font-size: 20px;
+            margin: 5px 0;
+        }
+        .profile-card .name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+        .profile-card .id {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+        }
+        .profile-card .tier {
+            font-size: 16px;
+            font-weight: bold;
+            color: #555;
+        }
+        .profile-card .rating {
+            font-size: 15px;
+            color: #333;
+        }
+        .profile-card .solved {
+            font-size: 12px;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+    {% for user in data %}
+    <div class="profile-card">
+        <h2 class="name">{{ user[0] }}</h2>
+        <h2 class="id">{{ user[1] }}</h2>
+        <p class="tier">{{ user[2] }}</p>
+        <p class="rating">AC {{ user[3] }}</p>
+        <p class="solved">{{ user[4] }} 문제 해결</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
