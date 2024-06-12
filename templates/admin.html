@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 페이지</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <form action="/admin/update" method="post">
+        <div id="user-list">
+            {% for user in data %}
+            <div class="user-entry">
+                <input type="text" name="names" value="{{ user[0] }}">
+                <input type="text" name="usernames" value="{{ user[1] }}">
+                <button class="removebtn" type="button" onclick="removeUser(this)">제거</button>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="button" onclick="addUser()">추가</button>
+        <button type="submit">저장</button>
+    </form>
+    <script>
+        function addUser() {
+            var userEntry = document.createElement('div');
+            userEntry.classList.add('user-entry');
+            userEntry.innerHTML = '<input type="text" name="names" value="">' +
+                                  '<input type="text" name="usernames" value="">' +
+                                  '<button type="button" onclick="removeUser(this)">제거</button>';
+            document.getElementById('user-list').appendChild(userEntry);
+        }
+
+        function removeUser(button) {
+            button.parentElement.remove();
+        }
+    </script>
+</body>
+</html>

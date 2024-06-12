@@ -1,0 +1,119 @@
+body {
+    font-family: "Noto Sans KR", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    margin: 40px;
+    background-color: #f4f4f9;
+    display: flex;
+    flex-direction: row; /* 세로 방향 배치 */
+    flex-wrap: wrap; /* 카드가 넘치면 줄바꿈 */
+    justify-content: center; /* 가운데 정렬 */
+    align-items: flex-start; /* 행의 시작 부분에 카드 정렬 */
+}
+.profile-card {
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 300px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 15px; /* 모서리 둥글게 */
+}
+.profile-card h2 {
+    margin: 0;
+    color: #222;
+}
+.profile-card p {
+    color: #666;
+    font-size: 20px;
+    margin: 5px 0;
+}
+.profile-card .name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+.profile-card .id {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+}
+.profile-card .tier {
+    font-size: 16px;
+    font-weight: bold;
+    color: #555;
+}
+.profile-card .rating {
+    font-size: 15px;
+    color: #333;
+}
+.profile-card .solved {
+    font-size: 12px;
+    color: #222;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.removebtn {
+    width: 150px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 16px;
+    padding: 16px;
+    width: 300px;
+}
+
+input[type="text"], input[type="password"] {
+    width: calc(100% - 24px);
+    padding: 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.user-entry input[type="text"] {
+    margin-right: 8px;
+    flex-grow: 1;
+}
+
+#user-list {
+    margin-top: 16px;
+}
+
+#user-list .user-entry button {
+    background-color: #dc3545;
+    color: white;
+}
+
+#user-list .user-entry button:hover {
+    background-color: #c82333;
+}
