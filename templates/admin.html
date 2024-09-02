@@ -24,15 +24,13 @@
         function addUser() {
             var userEntry = document.createElement('div');
             userEntry.classList.add('user-entry');
-            userEntry.innerHTML = '<input type="text" name="names" value="">' +
-                                  '<input type="text" name="usernames" value="">' +
-                                  '<button type="button" onclick="removeUser(this)">제거</button>';
+            userEntry.innerHTML = '<input type="text" name="names" value="" style="width: calc(40% - 8px); margin-right: 8px;">' +
+                                  '<input type="text" name="usernames" value="" style="width: calc(60% - 8px);">' +
+                                  '<button type="button" class="removebtn" onclick="removeUser(this)">제거</button>';
             document.getElementById('user-list').appendChild(userEntry);
         }
-
-        function removeUser(button) {
-            button.parentElement.remove();
-        }
     </script>
+    
+    
 </body>
 </html>

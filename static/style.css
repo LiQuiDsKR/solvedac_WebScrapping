@@ -76,6 +76,15 @@ button:hover {
     background-color: #0056b3;
 }
 
+footer {
+    margin-top: 400px;
+    padding: 20px;
+    width: 100%;
+    background-color: #f4f4f9;
+    text-align: center;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
 form {
     background-color: #fff;
     border-radius: 8px;
@@ -101,9 +110,21 @@ input[type="text"], input[type="password"] {
 }
 
 .user-entry input[type="text"] {
-    margin-right: 8px;
-    flex-grow: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
+
+.user-entry input[name="names"] {
+    width: calc(40% - 8px);
+    margin-right: 8px;
+}
+
+.user-entry input[name="usernames"] {
+    width: calc(60% - 8px);
+}
+
 
 #user-list {
     margin-top: 16px;

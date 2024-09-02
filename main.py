@@ -1,14 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for
 import requests
-from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-admin_password = "0209"
+admin_password = "liquid"
 
 def load_user_data():
     try:
-        with open('user_data.txt', 'r') as f:
+        with open('user_data.txt', 'r', encoding='euc-kr') as f:
             lines = f.readlines()
             names = []
             usernames = []
@@ -21,26 +20,33 @@ def load_user_data():
         return [], []
 
 def save_user_data(names, usernames):
-    with open('user_data.txt', 'w') as f:
+    with open('user_data.txt', 'w', encoding='euc-kr') as f:
         for name, username in zip(names, usernames):
             f.write(f"{name},{username}\n")
+
+def get_tier_name(tier):
+    tiers = ["Unranked", "Bronze V", "Bronze IV", "Bronze III", "Bronze II", "Bronze I",
+             "Silver V", "Silver IV", "Silver III", "Silver II", "Silver I",
+             "Gold V", "Gold IV", "Gold III", "Gold II", "Gold I",
+             "Platinum V", "Platinum IV", "Platinum III", "Platinum II", "Platinum I",
+             "Diamond V", "Diamond IV", "Diamond III", "Diamond II", "Diamond I",
+             "Ruby V", "Ruby IV", "Ruby III", "Ruby II", "Ruby I", "Master"]
+    return tiers[tier]
 
 def get_user_data(names, usernames):
     data = []
     for i in range(len(names)):
         try:
-            url = f"https://solved.ac/profile/{usernames[i]}"
+            url = f"https://solved.ac/api/v3/user/show?handle={usernames[i]}"
             res = requests.get(url)
             res.raise_for_status()
-            soup = BeautifulSoup(res.text, "lxml")
-            userInfo = soup.find('a', attrs={"class": "css-1ipvd2a"})
-            scoreSection = soup.find('div', attrs={"class": "css-1midmz7"})
-            tier = scoreSection.find('span').get_text()
-            ac_rating = int(scoreSection.find('b').find('span').get_text().replace(',', ''))  # 정수로 변환 및 쉼표 제거
-            solved_count = int(userInfo.find('b').get_text().replace(',', ''))  # 정수로 변환 및 쉼표 제거
+            user_info = res.json()
+            tier = get_tier_name(user_info['tier'])
+            ac_rating = user_info['rating']
+            solved_count = user_info['solvedCount']
             data.append((names[i], usernames[i], tier, ac_rating, solved_count))
         except Exception as e:
-            data.append((names[i], usernames[i], "Tier", 0, 0))
+            data.append((names[i], usernames[i], "Unranked", 0, 0))
     data.sort(key=lambda x: x[3], reverse=True)
     return data
 
@@ -72,4 +78,4 @@ def admin_update():
     return redirect(url_for('home'))
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=80, host="0.0.0.0")
